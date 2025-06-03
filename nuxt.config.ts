@@ -3,7 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-05-15",
-  devtools: { enabled: false },
+  devtools: { enabled: true },
 
   modules: ["@nuxt/eslint", "@vite-pwa/nuxt"],
   css: ["~/assets/css/main.css"],
@@ -12,16 +12,23 @@ export default defineNuxtConfig({
   },
   pwa: {
     registerType: "autoUpdate",
-    devOptions: {
-      enabled: true,
-      type: "module",
-    },
     manifest: {
       name: "Calculadora PWA",
       short_name: "Calculadora",
-      start_url: "/",
-      display: "standalone",
-      background_color: "#ffffff",
+      description: "Aplicativo Calculadora como PWA",
+      theme_color: "#ffffff",
+      icons: [
+        {
+          src: "/pwa-icon-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          src: "/pwa-icon-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+        },
+      ],
     },
   },
 });
