@@ -7,7 +7,7 @@ Aplicativo de calculadora científica responsiva, desenvolvido com Nuxt 3, Tailw
 ## 🚀 Tecnologias
 
 - [Nuxt 3](https://nuxt.com/)
-- [TailwindCSS v1.9](https://v1.tailwindcss.com/)
+- [TailwindCSS v4](https://tailwindcss.com)
 - [@vite-pwa/nuxt](https://vite-pwa-org.netlify.app/frameworks/nuxt)
 - [Vercel](https://vercel.com/) para deploy
 
