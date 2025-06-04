@@ -36,6 +36,12 @@ export default defineNuxtConfig({
           type: "image/png",
           form_factor: "wide",
         },
+        {
+          src: "/screenshots/calc-narrow.png",
+          sizes: "1024x1536",
+          type: "image/png",
+          form_factor: "narrow",
+        },
       ],
     },
   },
