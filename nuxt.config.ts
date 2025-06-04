@@ -31,8 +31,8 @@ export default defineNuxtConfig({
       ],
       screenshots: [
         {
-          src: "/calc-wide.png",
-          sizes: "1024x768",
+          src: "/screenshots/calc-wide.png",
+          sizes: "1536x1024",
           type: "image/png",
         },
       ],
