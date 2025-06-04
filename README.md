@@ -1,75 +1,94 @@
-# Nuxt Minimal Starter
+# Calculadora PWA — Nuxt 3 + TailwindCSS + Vite PWA
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Aplicativo de calculadora científica responsiva, desenvolvido com Nuxt 3, TailwindCSS e suporte completo a Progressive Web App (PWA).
 
-## Setup
+🔗 Acesse em produção: [calculadora-nuxt-pwa.vercel.app](https://calculadora-nuxt-pwa.vercel.app)
 
-Make sure to install dependencies:
+## 🚀 Tecnologias
+
+- [Nuxt 3](https://nuxt.com/)
+- [TailwindCSS v1.9](https://v1.tailwindcss.com/)
+- [@vite-pwa/nuxt](https://vite-pwa-org.netlify.app/frameworks/nuxt)
+- [Vercel](https://vercel.com/) para deploy
+
+---
+
+## ⚙️ Setup
+
+Instale as dependências do projeto:
 
 ```bash
 # npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
+# ou
 yarn install
-
-# bun
+# ou
+pnpm install
+# ou
 bun install
-```
+````
 
-## Development Server
+---
 
-Start the development server on `http://localhost:3000`:
+## 🧪 Desenvolvimento
+
+Inicie o servidor de desenvolvimento em `http://localhost:3000`:
 
 ```bash
 # npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+---
 
-Build the application for production:
+## 📦 Produção
+
+Construa o projeto para produção:
 
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+Visualize localmente o build de produção:
 
 ```bash
-# npm
 npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+---
+
+## 📲 Funcionalidades PWA
+
+Este projeto já está configurado como um Progressive Web App com:
+
+* `registerType: 'autoUpdate'` para atualizações automáticas
+* `manifest.webmanifest` com nome, descrição, ícones e screenshots
+* Compatibilidade com instalação em dispositivos móveis e desktop
+
+Verifique no DevTools → **Application** se o service worker e o manifest estão ativos.
+
+---
+
+## 📁 Estrutura de Pastas Relevante
+
+```
+public/
+├─ pwa-icon-192x192.png
+├─ pwa-icon-512x512.png
+└─ screenshots/
+   ├─ calc-wide.png
+   └─ calc-narrow.png
+```
+
+---
+
+## 📤 Deploy
+
+O deploy contínuo está configurado na [Vercel](https://vercel.com/). Saiba mais na [documentação de deploy do Nuxt](https://nuxt.com/docs/getting-started/deployment).
+
+---
+
+## 📜 Licença
+
+Este projeto é open-source e pode ser adaptado livremente para fins educacionais ou pessoais.
+
