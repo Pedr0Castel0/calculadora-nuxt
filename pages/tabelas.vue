@@ -19,23 +19,23 @@
             </NuxtLink>
             <div class="h-4 sm:h-6 w-px bg-slate-300"></div>
             <div class="flex items-center gap-2 sm:gap-3">
-              <span class="text-xl sm:text-2xl">🔄</span>
+              <span class="text-xl sm:text-2xl">📊</span>
               <h1 class="text-lg sm:text-2xl font-semibold text-slate-800">
-                <span class="hidden sm:inline">Conversor de Unidades</span>
-                <span class="sm:hidden">Conversor</span>
+                <span class="hidden sm:inline">Tabelas Técnicas</span>
+                <span class="sm:hidden">Tabelas</span>
               </h1>
             </div>
           </div>
 
-          <!-- Links adicionais e indicador PWA -->
+          <!-- Links adicionais -->
           <div class="flex items-center gap-2">
             <NuxtLink
-              to="/tabelas"
-              class="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-2 bg-orange-100 hover:bg-orange-200 text-orange-700 rounded-lg sm:rounded-xl transition-colors text-xs sm:text-sm font-medium"
-              title="Tabelas Técnicas"
+              to="/converter"
+              class="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-lg sm:rounded-xl transition-colors text-xs sm:text-sm font-medium"
+              title="Conversor de Unidades"
             >
-              <span>📊</span>
-              <span class="hidden xs:inline">Tabelas</span>
+              <span>🔄</span>
+              <span class="hidden xs:inline">Conversor</span>
             </NuxtLink>
 
             <!-- Indicador PWA -->
@@ -49,25 +49,59 @@
         </div>
       </div>
 
-      <!-- Conversor principal -->
-      <UnitConverter />
+      <!-- Layout das tabelas -->
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6">
+        <!-- Seletor de tabelas -->
+        <div class="lg:col-span-1">
+          <TableSelector
+            :selected-table="selectedTable"
+            @table-selected="onTableSelected"
+          />
+        </div>
+
+        <!-- Área principal das tabelas -->
+        <div class="lg:col-span-3">
+          <TechTables
+            :selected-table="selectedTable"
+            @table-selected="onTableSelected"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import UnitConverter from "~/components/UnitConverter.vue";
+import TechTables from "~/components/TechTables.vue";
+import TableSelector from "~/components/TableSelector.vue";
+
+interface TechnicalTable {
+  id: string;
+  name: string;
+  description: string;
+  shortDescription: string;
+  icon: string;
+  hasUnitSwitcher: boolean;
+  data: Record<string, any>[];
+  columns: any[];
+}
+
+const selectedTable = ref<TechnicalTable | null>(null);
 
 const { $pwa } = useNuxtApp();
 
+const onTableSelected = (table: TechnicalTable) => {
+  selectedTable.value = table;
+};
+
 // Configurar meta tags para SEO
 useHead({
-  title: "Conversor de Unidades - Calculator PWA",
+  title: "Tabelas Técnicas - Calculator PWA",
   meta: [
     {
       name: "description",
       content:
-        "Conversor de unidades moderno e responsivo. Converta comprimento, peso, temperatura, volume e muito mais.",
+        "Tabelas técnicas de referência para engenheiros e técnicos. Frações, vapor, materiais, torque e conexões.",
     },
   ],
 });
@@ -81,4 +115,4 @@ watchEffect(() => {
     }
   }
 });
-</script>
+</script> 

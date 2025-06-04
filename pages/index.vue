@@ -16,6 +16,14 @@
             <span>🔄</span>
             <span class="hidden sm:inline">Conversor</span>
           </NuxtLink>
+          <NuxtLink
+            to="/tabelas"
+            class="flex items-center gap-2 px-3 py-2 bg-orange-100 hover:bg-orange-200 text-orange-700 rounded-xl transition-colors text-sm font-medium"
+            title="Tabelas Técnicas"
+          >
+            <span>📊</span>
+            <span class="hidden sm:inline">Tabelas</span>
+          </NuxtLink>
           <button
             class="hover:bg-blue-500 hover:text-white px-4 py-2 rounded-xl text-sm font-medium text-slate-600 transition-all duration-200"
             :class="{
