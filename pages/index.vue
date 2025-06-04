@@ -7,17 +7,27 @@
         <h1 class="text-2xl font-semibold text-slate-800 tracking-tight">
           Calculadora PWA
         </h1>
-        <button
-          class="hover:bg-blue-500 hover:text-white px-4 py-2 rounded-xl text-sm font-medium text-slate-600 transition-all duration-200"
-          :class="{
-            'bg-blue-500 text-white': isScientificMode,
-            'bg-slate-100 text-slate-600': !isScientificMode,
-          }"
-          @click="toggleMode"
-        >
-          <span v-if="isScientificMode">Científico</span>
-          <span v-else>Básico</span>
-        </button>
+        <div class="flex items-center gap-2">
+          <NuxtLink
+            to="/converter"
+            class="flex items-center gap-2 px-3 py-2 bg-purple-100 hover:bg-purple-200 text-purple-700 rounded-xl transition-colors text-sm font-medium"
+            title="Conversor de Unidades"
+          >
+            <span>🔄</span>
+            <span class="hidden sm:inline">Conversor</span>
+          </NuxtLink>
+          <button
+            class="hover:bg-blue-500 hover:text-white px-4 py-2 rounded-xl text-sm font-medium text-slate-600 transition-all duration-200"
+            :class="{
+              'bg-blue-500 text-white': isScientificMode,
+              'bg-slate-100 text-slate-600': !isScientificMode,
+            }"
+            @click="toggleMode"
+          >
+            <span v-if="isScientificMode">Científico</span>
+            <span v-else>Básico</span>
+          </button>
+        </div>
       </div>
 
       <div
