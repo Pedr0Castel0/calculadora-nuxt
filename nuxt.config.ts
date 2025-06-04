@@ -34,6 +34,7 @@ export default defineNuxtConfig({
           src: "/screenshots/calc-wide.png",
           sizes: "1536x1024",
           type: "image/png",
+          form_factor: "wide",
         },
       ],
     },
