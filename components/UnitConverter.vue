@@ -1,8 +1,8 @@
 <template>
   <div class="unit-converter">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 h-full">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6 h-full">
       <!-- Seletor de categorias -->
-      <div class="md:col-span-1">
+      <div class="lg:col-span-1">
         <CategorySelector
           :selected-category="selectedCategory"
           @category-selected="onCategorySelected"
@@ -10,27 +10,79 @@
       </div>
 
       <!-- Área principal de conversão -->
-      <div class="md:col-span-3 space-y-6">
+      <div class="lg:col-span-3 space-y-4 sm:space-y-6">
         <!-- Cabeçalho da categoria -->
-        <div v-if="selectedCategory" class="bg-white rounded-2xl shadow-lg p-6">
-          <div class="flex items-center gap-3 mb-2">
-            <span class="text-2xl">{{ selectedCategory.icon }}</span>
-            <h2 class="text-2xl font-semibold text-slate-800">
+        <div
+          v-if="selectedCategory"
+          class="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6"
+        >
+          <div class="flex items-center gap-2 sm:gap-3 mb-2">
+            <span class="text-xl sm:text-2xl">{{ selectedCategory.icon }}</span>
+            <h2 class="text-lg sm:text-2xl font-semibold text-slate-800">
               {{ selectedCategory.name }}
             </h2>
           </div>
-          <p class="text-slate-600">
+          <p class="text-sm sm:text-base text-slate-600">
             Converta entre diferentes unidades de
             {{ selectedCategory.name.toLowerCase() }}
           </p>
         </div>
 
-        <div
-          v-if="selectedCategory"
-          class="grid grid-cols-1 lg:grid-cols-2 gap-6"
-        >
-          <!-- Campo de entrada -->
-          <div class="space-y-4">
+        <div v-if="selectedCategory" class="space-y-4 sm:space-y-6">
+          <!-- Grid layout para desktop -->
+          <div class="hidden xl:grid xl:grid-cols-2 xl:gap-6">
+            <!-- Campo de entrada -->
+            <div class="space-y-3 sm:space-y-4">
+              <UnitInput
+                label="De"
+                :value="fromValue"
+                :selected-unit="fromUnit"
+                :units="selectedCategory.units"
+                @value-change="onFromValueChange"
+                @unit-change="onFromUnitChange"
+              />
+
+              <!-- Botão de inversão -->
+              <div class="flex justify-center">
+                <button
+                  title="Inverter unidades"
+                  :disabled="!fromUnit || !toUnit"
+                  class="p-2 sm:p-3 bg-blue-500 hover:bg-blue-600 disabled:bg-slate-300 text-white rounded-lg sm:rounded-xl transition-colors"
+                  @click="swapUnits"
+                >
+                  <Icon
+                    name="lets-icons:horizontal-switch-light"
+                    class="w-4 h-4 sm:w-5 sm:h-5"
+                  />
+                </button>
+              </div>
+
+              <UnitInput
+                label="Para"
+                :value="toValue"
+                :selected-unit="toUnit"
+                :units="selectedCategory.units"
+                @value-change="onToValueChange"
+                @unit-change="onToUnitChange"
+              />
+            </div>
+
+            <!-- Resultado -->
+            <div>
+              <ConversionResult
+                :result="convertedResult"
+                :result-unit="toUnit"
+                :units="selectedCategory.units"
+                :conversion-formula="conversionFormula"
+                :show-history="true"
+                :history="conversionHistory"
+                @clear-history="clearHistory"
+              />
+            </div>
+          </div>
+
+          <!-- Layout mobile: controles abaixo do resultado -->
+          <div class="xl:hidden space-y-3 sm:space-y-4">
             <UnitInput
               label="De"
               :value="fromValue"
@@ -45,10 +97,13 @@
               <button
                 title="Inverter unidades"
                 :disabled="!fromUnit || !toUnit"
-                class="p-3 bg-blue-500 hover:bg-blue-600 disabled:bg-slate-300 text-white rounded-xl transition-colors"
+                class="p-2 sm:p-3 bg-blue-500 hover:bg-blue-600 disabled:bg-slate-300 text-white rounded-lg sm:rounded-xl transition-colors"
                 @click="swapUnits"
               >
-                <Icon name="lets-icons:horizontal-switch-light" />
+                <Icon
+                  name="lets-icons:horizontal-switch-light"
+                  class="w-4 h-4 sm:w-5 sm:h-5"
+                />
               </button>
             </div>
 
@@ -61,9 +116,8 @@
               @unit-change="onToUnitChange"
             />
           </div>
-
-          <!-- Resultado -->
-          <div>
+          <!-- Em mobile: resultado primeiro, controles depois -->
+          <div class="xl:hidden">
             <ConversionResult
               :result="convertedResult"
               :result-unit="toUnit"
@@ -77,12 +131,15 @@
         </div>
 
         <!-- Estado inicial -->
-        <div v-else class="bg-white rounded-2xl shadow-lg p-12 text-center">
-          <div class="text-6xl mb-4">🔄</div>
-          <h3 class="text-xl font-semibold text-slate-800 mb-2">
+        <div
+          v-else
+          class="bg-white rounded-xl sm:rounded-2xl shadow-lg p-8 sm:p-12 text-center"
+        >
+          <div class="text-4xl sm:text-6xl mb-3 sm:mb-4">🔄</div>
+          <h3 class="text-lg sm:text-xl font-semibold text-slate-800 mb-2">
             Conversor de Unidades
           </h3>
-          <p class="text-slate-600">
+          <p class="text-sm sm:text-base text-slate-600">
             Selecione uma categoria para começar a converter
           </p>
         </div>

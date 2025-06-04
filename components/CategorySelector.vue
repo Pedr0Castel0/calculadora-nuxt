@@ -1,9 +1,9 @@
 <template>
   <div class="category-selector">
     <!-- Desktop: Menu lateral -->
-    <div class="hidden md:block w-64 bg-white rounded-2xl shadow-lg p-4 h-fit">
-      <h3 class="text-lg font-semibold text-slate-800 mb-4">Categorias</h3>
-      <div class="space-y-2">
+    <div class="hidden lg:block w-full bg-white rounded-xl sm:rounded-2xl shadow-lg p-3 sm:p-4 h-fit">
+      <h3 class="text-base sm:text-lg font-semibold text-slate-800 mb-3 sm:mb-4">Categorias</h3>
+      <div class="space-y-1 sm:space-y-2">
         <button
           v-for="category in categories"
           :key="category.id"
@@ -12,29 +12,29 @@
             'bg-slate-50 text-slate-700 hover:bg-slate-100':
               selectedCategory?.id !== category.id,
           }"
-          class="w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-150 text-left"
+          class="w-full flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all duration-150 text-left text-sm sm:text-base"
           @click="$emit('categorySelected', category)"
         >
-          <span class="text-xl">{{ category.icon }}</span>
+          <span class="text-base sm:text-xl">{{ category.icon }}</span>
           <span class="font-medium">{{ category.name }}</span>
         </button>
       </div>
     </div>
 
     <!-- Mobile: Dropdown -->
-    <div class="md:hidden">
+    <div class="lg:hidden">
       <button
-        class="w-full bg-white rounded-2xl shadow-lg p-4 flex items-center justify-between"
+        class="w-full bg-white rounded-xl shadow-lg p-3 sm:p-4 flex items-center justify-between"
         @click="showMobileMenu = !showMobileMenu"
       >
-        <div class="flex items-center gap-3">
-          <span class="text-xl">{{ selectedCategory?.icon || "📏" }}</span>
-          <span class="font-medium text-slate-800">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <span class="text-lg sm:text-xl">{{ selectedCategory?.icon || "📏" }}</span>
+          <span class="font-medium text-slate-800 text-sm sm:text-base">
             {{ selectedCategory?.name || "Selecionar Categoria" }}
           </span>
         </div>
         <span
-          class="text-slate-400 transform transition-transform"
+          class="text-slate-400 transform transition-transform text-sm"
           :class="{ 'rotate-180': showMobileMenu }"
         >
           ▼
@@ -43,7 +43,7 @@
 
       <div
         v-if="showMobileMenu"
-        class="absolute z-50 mt-2 w-full bg-white rounded-2xl shadow-2xl border border-slate-200 max-h-80 overflow-y-auto"
+        class="absolute z-50 mt-2 w-full bg-white rounded-xl shadow-2xl border border-slate-200 max-h-64 sm:max-h-80 overflow-y-auto"
       >
         <div class="p-2">
           <button
@@ -54,10 +54,10 @@
               'text-slate-700 hover:bg-slate-50':
                 selectedCategory?.id !== category.id,
             }"
-            class="w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-150 text-left"
+            class="w-full flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all duration-150 text-left text-sm sm:text-base"
             @click="selectMobileCategory(category)"
           >
-            <span class="text-xl">{{ category.icon }}</span>
+            <span class="text-base sm:text-xl">{{ category.icon }}</span>
             <span class="font-medium">{{ category.name }}</span>
           </button>
         </div>
